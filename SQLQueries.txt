@@ -1,0 +1,154 @@
+select * from HR.Employees;
+select * from HR.Departments;
+
+//SQL Addition Operator
+SELECT employee_id, first_name, last_name, salary, salary + 20000 as Emp_New_Salary FROM HR.Employees;
+//SQL Subtraction Operator
+SELECT employee_id, first_name, last_name, salary, Salary - 5000 as Emp_New_Salary FROM HR.Employees;  
+//SQL Multiplication Operator
+SELECT employee_id, first_name, last_name, salary, Salary*2 as Emp_New_Salary FROM HR.Employees;
+//SQL Division Operator (/)
+SELECT employee_id, first_name, last_name, salary, Salary/2 as Emp_New_Salary FROM HR.Employees;
+
+//SQL Comparison operator
+
+select employee_id, first_name, last_name, salary as Emp_New_Salary from hr.employees where salary>10000;
+select employee_id, first_name, last_name, salary, salary+(salary*10/100) as Emp_New_Salary from hr.employees where salary<7000
+select * from Hr.employees where employee_id=110;
+select employee_id, first_name, last_name, salary from hr.employees where employee_id not between 110 and 130;
+select employee_id, first_name, last_name, salary from hr.employees where employee_id between 110 and 130;
+select employee_id, first_name, last_name, salary from hr.employees where employee_id in(110,110,125,134,164,201);
+select * from hr.employees where salary in(5000,7000,12000,14000);
+select employee_id, first_name, last_name, salary from hr.employees where first_name like 'S%';
+select employee_id, first_name, last_name, salary from hr.employees where first_name like '%S%';
+select employee_id, first_name, last_name, salary from hr.employees where first_name like '_i_n_%';
+select employee_id, first_name, last_name, salary from hr.employees where salary>10000 and first_name like '%e%';
+
+select first_name,employee_id,salary+(salary*10)/100  from hr.employees where employee_id>105 and salary<10000 and first_name like 'A%' and (employee_id between 100 and 120)
+select first_name,employee_id,salary+(salary*10)/100  from hr.employees where employee_id>105 and salary<10000 and first_name like 'A%'
+select first_name,employee_id,salary+(salary*10)/100  from hr.employees where employee_id>105 and and salary<10000 and first_name like 'A%'
+select first_name,employee_id,salary+(salary*10)/100  from hr.employees where employee_id>105 and and salary<10000 and first_name like 'A%'
+select first_name,last_name,salary from hr.employees where first_name like'_a_e%'
+select first_name,last_name,salary from hr.employees where first_name like'%z%'
+select first_name,last_name,salary from hr.employees where first_name like'%A%'
+select employee_id,first_name,last_name,salary from hr.employees where employee_id not between 104 and 108
+select employee_id,first_name,last_name,salary from hr.employees where employee_id between 104 and 108
+select employee_id,first_name,last_name,salary from hr.employees where employee_id in(105,101,106)
+select employee_id,first_name,last_name,salary from hr.employees where employee_id not in(105,101,106)
+select employee_id,first_name,last_name,salary from hr.employees where employee_id not in(105)
+select employee_id,first_name,last_name,salary from hr.employees where employee_id<110 not salary<1000
+select employee_id,first_name,last_name,salary from hr.employees where employee_id<110 or salary<10000
+select employee_id,first_name,last_name,salary from hr.employees where employee_id<110 and salary<10000
+select employee_id,first_name,last_name from hr.employees where employee_id<110 and salary<10000
+select employee_id,first_name,last_name from hr.employees where employee_id>=204
+select first_name from hr.employees order by last_name asc
+select first_name from hr.employees order by last_name desc
+select employee_id,first_name,last_name from hr.employees where employee_id=204
+select employee_id,first_name,last_name from hr.employees where employee_id>=204
+select first_name,(salary/2)/100 from hr.employees where salary<10000
+select first_name,salary-(salary/2)/100 from hr.employees where salary<10000
+select first_name,salary-(salary*2)/100 from hr.employees where salary<10000
+select first_name,salary,(salary*10)/100 from hr.employees where salary<10000
+select first_name,salary-(salary*2)/100 from hr.employees where salary<10000
+select first_name,salary,(salary*10)/100 from hr.employees where salary<15000
+select first_name,salary-(salary*10)/100 from hr.employees where salary<40000
+select first_name,salary,(salary*10)/100 from hr.employees where salary<10000
+select first_name,salary-(salary*10)/100 from hr.employees where salary<12000
+select first_name,(salary*10)/100 from hr.employees where salary<10000
+select first_name from hr.employees order by last_name asc
+select first_name from hr.employees order by first_name desc
+SELECT * FROM hr.employees WHERE salary != 45000; 
+SELECT * FROM hr.employees WHERE employee_id <= 203;   
+SELECT employee_id, first_name, last_name salary from hr.employees WHERE salary > ALL ( SELECT salary from hr.employees WHERE first_name = 'Devid');
+
+
+//Functions
+Select UPPER ('welcome to pune') from dual;
+Select LOWER ('WELCOME NIDHI') from dual;
+Select INITCAP('welcome to pune') from dual;
+
+Select LENGTH ('WELCOME TO PUNE') from dual;
+Select REVERSE('WELCOME TO PUNE') from dual;
+Select REPLACE('WELCOME TO PUNE', 'PUNE', 'MUMBAI') from dual;
+select LPAD (991994, 5, 0);
+select RPAD (991994, 5, 0);
+Select INSTR ('Welcome To Pune', 'c') from dual;
+select SUBSTR ('Welcome To Pune', 2,5) from dual;
+select TRIM ('w' from 'welcome to India') from dual;
+Select CONCAT ('Hello', 'Nidhi') from dual;
+select 'Hi'|| 'Nidhi' ||'Welcome' from dual;
+select employee_id, first_name, last_name, to_char(hire_date, 'yy') from hr.employees;
+select MAX (salary) from hr.employees;
+Select MAX(salary), MIN(SALARY), AVG(salary), SUM(salary), COUNT(salary) from hr.employees;
+select employee_id, first_name, last_name, Salary, row_number() over (order by salary desc) "row_number" from hr.employees;
+select employee_id, first_name, last_name, Salary, row_number() over (order by salary desc) "row_number", rank() over (order by salary desc) "Rank", dense_rank() over (order by salary desc) "Dense_Rank", NTile(10) over (order by salary desc) "NTile" from hr.employees;
+
+//Join
+select employee_id, first_name, department_name from hr.employees join hr.departments ON hr.employees.department_id = hr.departments.department_id;
+select employee_id, first_name, department_name from hr.employees e join hr.departments d ON e.department_id = d.department_id;
+select e.employee_id, e.job_id, e1.manager_id from hr.employees e join hr.employees e1 ON e.employee_id = e1.manager_id;
+
+
+//SQL Table
+
+CREATE TABLE Employee  
+(  
+EmployeeID int Primary Key,  
+FirstName varchar(255),  
+LastName varchar(255),  
+Email varchar(255),  
+AddressLine varchar(255),  
+City varchar(255)  
+);  
+
+DROP table Employee;
+
+CREATE TABLE Student_Records   
+(  
+Student_Id Int PRIMARY KEY,    
+First_Name VARCHAR (20),    
+Address VARCHAR (20),    
+Age Int NOT NULL,  
+Percentage Int NOT NULL,  
+Grade VARCHAR (10)   
+) ;  
+
+INSERT INTO Student_Records VALUES (201, Akash, Delhi, 18, 89, A2),   
+(202, Bhavesh, Kanpur, 19, 93, A1),  
+(203, Yash, Delhi, 20, 89, A2),    
+(204, Bhavna, Delhi, 19, 78, B1),  
+(05, Yatin, Lucknow, 20, 75, B1),  
+(206, Ishika, Ghaziabad, 19, 51, C1),  
+(207, Vivek, Goa, 20, 62, B2);  
+
+//Trigger
+Create or Replace Trigger tg
+before insert on Student_Records
+for each row
+begin
+dbms.output.put_line("Before Insert on Student_Records Trigger ")
+end;
+
+//Stored Procedure
+
+Set serveroutput on
+Create or replace procedure sp_Student_Records
+as 
+begin
+dbms.output.put_line('Stored Procedure Created')
+end;
+
+//Record
+
+Set serveroutput on
+declare
+type emprecord is record
+(
+first_name varchar(100),
+sal number,
+hire_date date
+);
+e emprecord;
+begin
+select first_name, salary, hire_date into e from hr.employees WHERE employee_id = 120;
+
